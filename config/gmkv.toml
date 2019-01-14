@@ -1,0 +1,46 @@
+# Configuration file for gm-kv
+
+# Multi app(tidb and others) share common tikv use appname to distinguish
+appname = "kv"
+
+# KV server host
+host = "0.0.0.0"
+
+# KV server port
+port = 5379
+
+# Enable current
+max_connection = 5000
+
+auth = ""
+
+[backend]
+# Placement driver addresses, tikv://etcd-node1:port,etcd-node2:port?cluster=1&disableGC=false
+pd-address = "192.168.15.11:2379"
+
+[log]
+# Log level: debug, info, warn, error, fatal
+level = "debug"
+
+# Log format, one of json, text
+format = "text"
+
+# To save log
+# log-path = ""
+
+# Max log file size
+max-size = 300
+
+#
+max-days = 3
+
+[metric]
+# Push to prometheus
+job = "gmkv"
+
+# Prometheus pushgateway address, leaves it empty will disable prometheus push.
+address = "192.168.15.11:9091"
+
+# Prometheus client push interval in second, set "0" to disable prometheus push.
+interval = "20s"
+
