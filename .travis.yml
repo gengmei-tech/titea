@@ -5,5 +5,10 @@ go_import_path: github.com/gengmei-tech/titea
 go:
   - "1.11"
 
+
+before_install:
+  - go get golang.org/x/lint/golint
+
+
 script:
   - make check
