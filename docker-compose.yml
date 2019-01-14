@@ -36,11 +36,13 @@ services:
 
   titea:
     image: gengmei/titea:v1.0.0
+    volumes:
+      - ./logs:/logs
     ports:
       - "5379:5379"
     command:
       - --pd-address=pd0:2379
-      - --log-path=/titea/log/titea.log
+      - --log-path=/logs/titea.log
     depends_on:
       - "tikv0"
     restart: on-failure

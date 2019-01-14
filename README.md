@@ -22,6 +22,16 @@ Thanks [TiKV](https://github.com/tikv/tikv) for supporting the core features
 
 # Quick Run
 
+```
+# download docker-compose.yml
+curl -s -O https://raw.githubusercontent.com/gengmei-tech/titea/master/docker-compose.yml
+# Up
+docker-compose up
+
+# Then use redis-cli to connect
+redis-cli -p 5379
+```
+
 
 # License
 TiTea is under the Apache 2.0 license. See the [LICENSE](./LICENSE) file for details.
