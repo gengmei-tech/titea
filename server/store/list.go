@@ -281,8 +281,5 @@ func (list *List) destroy() error {
 		return err
 	}
 	// remove from expire set
-	if err := RemoveExpire(list.environ, list.store, list.key, list.meta.ExpireAt); err != nil {
-		return err
-	}
-	return nil
+	return RemoveExpire(list.environ, list.store, list.key, list.meta.ExpireAt)
 }

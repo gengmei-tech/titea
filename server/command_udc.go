@@ -56,7 +56,7 @@ func scanCommand(c *Client) error {
 	return c.writer.Array(keys)
 }
 
-// count wiht prefix
+// count with prefix
 func countCommand(c *Client) error {
 	if !bytes.HasPrefix(c.args[0], []byte(types.SystemPrefix)) {
 		return c.writer.Error(terror.ErrCmdParams)

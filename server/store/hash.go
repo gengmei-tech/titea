@@ -329,8 +329,5 @@ func (hash *Hash) destroy() error {
 		return err
 	}
 	// 从过期集合里删除
-	if err := RemoveExpire(hash.environ, hash.store, hash.key, hash.meta.ExpireAt); err != nil {
-		return err
-	}
-	return nil
+	return RemoveExpire(hash.environ, hash.store, hash.key, hash.meta.ExpireAt)
 }

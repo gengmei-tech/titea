@@ -372,8 +372,5 @@ func (zset *ZSet) destroy() error {
 		return err
 	}
 	// remove from expire set
-	if err := RemoveExpire(zset.environ, zset.store, zset.key, zset.meta.ExpireAt); err != nil {
-		return err
-	}
-	return nil
+	return RemoveExpire(zset.environ, zset.store, zset.key, zset.meta.ExpireAt)
 }

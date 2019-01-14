@@ -218,8 +218,5 @@ func (set *Set) destroy() error {
 		return err
 	}
 	// remove from expire set
-	if err := RemoveExpire(set.environ, set.store, set.key, set.meta.ExpireAt); err != nil {
-		return err
-	}
-	return nil
+	return RemoveExpire(set.environ, set.store, set.key, set.meta.ExpireAt)
 }

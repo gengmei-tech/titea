@@ -2,3 +2,5 @@
 .idea/
 bin/
 *.iml
+data/
+logs/

@@ -16,7 +16,7 @@ default: build
 all: check build
 
 build:
-	go build -ldflags '$(LDFLAGS)' -o bin/gm-kv ./cmd/server/*
+	go build -ldflags '$(LDFLAGS)' -o bin/titea ./cmd/server/*
 
 check: fmt lint
 
@@ -30,7 +30,3 @@ lint:
 
 benchmark:
 	go build -o bin/benchmark cmd/benchmark/main.go
-
-
-# vim:ft=make
-#
