@@ -1,0 +1,9 @@
+language: go
+
+go_import_path: github.com/gengmei-tech/titea
+
+go:
+  - "1.10"
+
+script:
+  - make
