@@ -84,7 +84,6 @@ func (s *Server) Run() error {
 		}
 		go s.handleConnection(conn)
 	}
-	return nil
 }
 
 func (s *Server) handleConnection(conn net.Conn) {

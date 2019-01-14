@@ -1,59 +1,38 @@
 package types
 
+// Type in tikv
 const (
-	// STRING string
 	STRING byte = 'r'
-	// HASH hash
-	HASH byte = 'h'
-	// LIST list
-	LIST byte = 'l'
-	// SET set
-	SET byte = 's'
-	// ZSET zset
-	ZSET byte = 'z'
-	// META meta
-	META byte = 'm'
-	// GC gc
-	GC byte = 'g'
-	// DATA data
-	DATA byte = 'd'
-	// EXPIRE expire
+	HASH   byte = 'h'
+	LIST   byte = 'l'
+	SET    byte = 's'
+	ZSET   byte = 'z'
+	META   byte = 'm'
+	GC     byte = 'g'
+	DATA   byte = 'd'
 	EXPIRE byte = 'e'
 )
 
-// command type
+// Command type
 const (
-	// CSTRING string command
 	CSTRING byte = STRING
-	// CLIST list command
-	CLIST byte = LIST
-	// CHSAH hash command
-	CHSAH byte = HASH
-	// CSET set command
-	CSET byte = SET
-	// CZSET zset command
-	CZSET byte = ZSET
-	// CKEY key command
-	CKEY byte = 'k'
-	// CCONN connection command
-	CCONN byte = 'c'
-	// CSERVER server command
+	CLIST   byte = LIST
+	CHSAH   byte = HASH
+	CSET    byte = SET
+	CZSET   byte = ZSET
+	CKEY    byte = 'k'
+	CCONN   byte = 'c'
 	CSERVER byte = 'v'
-	// CUDC user defined command
-	CUDC byte = 'u'
+	CUDC    byte = 'u'
 )
 
+// Command type string
 const (
-	// SSTRING string
 	SSTRING = "string"
-	// SHASH hash
-	SHASH = "hash"
-	// SLIST list
-	SLIST = "list"
-	// SSET set
-	SSET = "set"
-	// SZSET zset
-	SZSET = "zset"
+	SHASH   = "hash"
+	SLIST   = "list"
+	SSET    = "set"
+	SZSET   = "zset"
 )
 
 // TYPES redis type
@@ -65,12 +44,10 @@ var TYPES = map[byte]string{
 	ZSET:   SZSET,
 }
 
+// Command Flag
 const (
-	// FlagRead read command
-	FlagRead byte = 'r'
-	// FlagWrite write command
+	FlagRead  byte = 'r'
 	FlagWrite byte = 'w'
-	// FlagPlain no read no write
 	FlagPlain byte = 'p'
 )
 

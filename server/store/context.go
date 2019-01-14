@@ -5,6 +5,15 @@ import (
 	"github.com/gengmei-tech/titea/server/types"
 )
 
+// Version Info
+var (
+	BuildTs        = "None"
+	GitHash        = "None"
+	GitBranch      = "None"
+	ReleaseVersion = "None"
+	GoVersion      = "None"
+)
+
 // Header the completed header = prefix|namespace
 type Header struct {
 	header []byte
