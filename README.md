@@ -30,8 +30,13 @@ docker-compose up
 
 # Then use redis-cli to connect
 redis-cli -p 5379
+
+# Just Like Use Redis
 ```
 
+# Supported Commands
+
+[supported commands](./docs/commands.md)
 
 # License
 TiTea is under the Apache 2.0 license. See the [LICENSE](./LICENSE) file for details.
