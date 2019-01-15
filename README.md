@@ -20,6 +20,11 @@ TiTea is a distributed redis protocol compatible NoSQL Database, providing a Red
 Thanks [TiKV](https://github.com/tikv/tikv) for supporting the core features
 
 
+# Architecture
+
+![architecture](./docs/images/titea.png)
+
+
 # Quick Run
 
 ```
@@ -34,9 +39,11 @@ redis-cli -p 5379
 # Just Like Use Redis
 ```
 
-# Supported Commands
+# Docs
 
-[supported commands](./docs/commands.md)
+- [supported commands](./docs/commands.md)
+- [Multi-tenancy](./docs/namespace.md)
+
 
 # License
 TiTea is under the Apache 2.0 license. See the [LICENSE](./LICENSE) file for details.
