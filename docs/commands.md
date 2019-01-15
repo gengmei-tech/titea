@@ -103,9 +103,9 @@
 keys command differ from redis keys command: 
 
 #### regular expression as redis don't supported, all as follow: 
-* keys * :  get all keys under namespace
-* keys prefix : get all keys with prefix under namespace
-* keys prefix* : just like `keys prefix`, get all keys with prefix under namespace
+* keys * :  get all keys in current db
+* keys prefix : get all keys with prefix in current db
+* keys prefix* : just like `keys prefix`, get all keys with prefix in current db
 
 #### two optional params is supported, start and limit(default 5000, max 5000), 
 * keys * (start） （limit)
