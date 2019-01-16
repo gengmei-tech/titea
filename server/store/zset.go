@@ -102,7 +102,7 @@ func (zset *ZSet) ExistsForRead() error {
 	return nil
 }
 
-// EncodeDataKey header|d|uuid|withoutScore(1)|member
+// EncodeDataKey header|type(1)|uuid|withoutScore(1)|member
 func (zset *ZSet) EncodeDataKey(member []byte) []byte {
 	buffer := make([]byte, zset.environ.HeaderLen+18+len(member))
 	copy(buffer[0:], zset.environ.Header)

@@ -41,8 +41,9 @@ redis-cli -p 5379
 
 # Docs
 
-- [supported commands](./docs/commands.md)
-- [Multi-tenancy](./docs/namespace.md)
+- [Supported Commands](./docs/commands.md)
+- [Multi-Tenancy](./docs/namespace.md)
+- [TiTea Internals](./docs/internal.md)
 
 
 # License
