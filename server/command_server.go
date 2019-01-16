@@ -47,13 +47,22 @@ func clientListCommand(c *Client) error {
 // group.service: creater
 func infoCommad(c *Client) error {
 	var resp [][]byte
+	resp = append(resp, []byte("# Server Info"))
+	resp = append(resp, []byte(fmt.Sprintf("BuildTs: %s", store.BuildTs)))
+	resp = append(resp, []byte(fmt.Sprintf("GitHash: %s", store.GitHash)))
+	resp = append(resp, []byte(fmt.Sprintf("GitBranch: %s", store.GitBranch)))
+	resp = append(resp, []byte(fmt.Sprintf("ReleaseVersion: %s", store.ReleaseVersion)))
+	resp = append(resp, []byte(fmt.Sprintf("GoVersion: %s", store.GoVersion)))
+	resp = append(resp, []byte("---------------------------"))
 	resp = append(resp, []byte("# Group.Service | DBindex | Creator"))
 	namespaces := ns.GetAllNamespace()
 	for _, namespace := range namespaces {
 		resp = append(resp, []byte(fmt.Sprintf("%s | %d | %s", namespace.Name, namespace.Index, namespace.Creator)))
 	}
+	resp = append(resp, []byte("---------------------------"))
 	resp = append(resp, []byte("# Params"))
 	resp = append(resp, c.server.getParams()...)
+	resp = append(resp, []byte("---------------------------"))
 	return c.writer.Array(resp)
 }
 

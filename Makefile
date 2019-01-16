@@ -1,13 +1,13 @@
-PROJECT_NAME := TiTea
+PROJECT_NAME := titea
 PROJECT_ROOT := github.com/gengmei-tech/$(PROJECT_NAME)
 FILES := $(shell find . -name "*.go" | grep -vE "vendor")
 PACKAGES := $(shell go list ./...| grep -vE "vendor")
 
-LDFLAGS += -X "$(PROJECT_ROOT)/server/store/context.BuildTS=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
-LDFLAGS += -X "$(PROJECT_ROOT)/server/store/context.GitHash=$(shell git rev-parse --short HEAD)"
-LDFLAGS += -X "$(PROJECT_ROOT)/server/store/context.GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
-LDFLAGS += -X "$(PROJECT_ROOT)/server/store/context.ReleaseVersion=$(shell git tag  --contains)"
-LDFLAGS += -X "$(PROJECT_ROOT)/server/store/context.GoVersion=$(shell go version)"
+LDFLAGS += -X "$(PROJECT_ROOT)/server/store.BuildTs=$(shell date -u '+%Y-%m-%d %I:%M:%S')"
+LDFLAGS += -X "$(PROJECT_ROOT)/server/store.GitHash=$(shell git rev-parse --short HEAD)"
+LDFLAGS += -X "$(PROJECT_ROOT)/server/store.GitBranch=$(shell git rev-parse --abbrev-ref HEAD)"
+LDFLAGS += -X "$(PROJECT_ROOT)/server/store.ReleaseVersion=$(shell git tag  --contains)"
+LDFLAGS += -X "$(PROJECT_ROOT)/server/store.GoVersion=$(shell go version)"
 
 .PHONY: all build check fmt lint
 
