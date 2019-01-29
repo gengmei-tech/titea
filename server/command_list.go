@@ -77,7 +77,7 @@ func llenCommand(c *Client) error {
 	return c.writer.Integer(int64(list.Len()))
 }
 
-// 下标从0开始
+// index begin with 0
 func lindexCommand(c *Client) error {
 	index, err := strconv.ParseInt(string(c.args[1]), 10, 64)
 	if err != nil {
@@ -92,12 +92,12 @@ func lindexCommand(c *Client) error {
 	}
 	if index < 0 {
 		index = index + int64(list.Len())
-		// 越界
+		// out of bound
 		if index < 0 {
 			return c.writer.Null()
 		}
 	}
-	// 越界
+	// out of bound
 	if index >= int64(list.Len()) {
 		return c.writer.Null()
 	}
@@ -108,7 +108,7 @@ func lindexCommand(c *Client) error {
 	return c.writer.BulkByte(value)
 }
 
-// start从0开始
+// start begin with 0
 func lrangeComamnd(c *Client) error {
 	start, err := strconv.ParseInt(string(c.args[1]), 10, 64)
 	if err != nil {
@@ -132,7 +132,6 @@ func lrangeComamnd(c *Client) error {
 			return c.writer.Array(emptyListOrSet)
 		}
 	} else if start >= int64(list.Len()) {
-		// 过界了
 		return c.writer.Array(emptyListOrSet)
 	}
 
@@ -157,7 +156,6 @@ func lrangeComamnd(c *Client) error {
 	return c.writer.Array(result)
 }
 
-// 索引从0开始
 func lsetCommand(c *Client) error {
 	index, err := strconv.ParseInt(string(c.args[1]), 10, 64)
 	if err != nil {

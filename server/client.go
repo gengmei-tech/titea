@@ -102,11 +102,11 @@ func (c *Client) handleRequest(req [][]byte) error {
 	c.args = req[1:]
 	c.argc = len(c.args)
 
-	// 需要auth 但还没有auth
+	// Need Auth
 	if c.needAuth && !c.isAuthed {
 		return c.writer.Error(terror.ErrAuthRequired)
 	}
-	// 没有命令
+	// Error
 	if len(c.cmd) == 0 {
 		return c.writer.Error(terror.ErrCommand)
 	}
@@ -124,20 +124,20 @@ func (c *Client) close() {
 }
 
 func (c *Client) execute() error {
-	// redis-cli 客户端连接后 会发送"command" 这个命令
+	// redis-cli will send "command" when connected
 	command, ok := lookupCommand(c.cmd)
 	if !ok {
 		return c.writer.Error(terror.ErrCommand)
 	}
 
-	// 检测参数个数是否合理 统一检测
+	// check args
 	if command.Arity > 0 && c.argc != command.Arity {
 		return c.writer.Error(terror.ErrCmdParams)
 	} else if command.Arity < 0 && c.argc < int(math.Abs(float64(command.Arity))) {
 		return c.writer.Error(terror.ErrCmdParams)
 	}
 
-	// 写操作 如果某个参数有 但是值为空 则填充空字节(write 操作 统一在这里添加)
+	// if value is "", so Fill(tikv don't support empty value)
 	if command.Flags == types.FlagWrite && c.argc > 1 {
 		for i, r := range c.args[1:] {
 			if len(r) == 0 {

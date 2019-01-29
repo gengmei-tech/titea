@@ -79,7 +79,6 @@ func (hash *Hash) ExistsForRead() error {
 			return err
 		}
 		if err := hash.store.Commit(); err != nil {
-			// 日志
 			hash.environ.FailedTxn("ExistsForRead")
 			log.Infof("key:%s, expireAt:%d\n", hash.key, hash.meta.ExpireAt)
 			return err
@@ -161,7 +160,6 @@ func (hash *Hash) MSet(items map[string][]byte) (uint64, error) {
 		if err = hash.store.Set([]byte(key), value); err != nil {
 			return 0, err
 		}
-		// 已经存在
 		if val, ok := result[key]; ok && val != nil {
 			continue
 		}
@@ -296,7 +294,6 @@ func (hash *Hash) Remove(fields ...[]byte) (uint64, error) {
 	var delCnt uint64
 	for _, key := range dataKeys {
 		if val, ok := result[string(key)]; ok && val != nil {
-			// 存在的key
 			if err = hash.store.Delete(key); err != nil {
 				return 0, err
 			}
@@ -328,6 +325,5 @@ func (hash *Hash) destroy() error {
 	if err := AddToGc(hash.environ, hash.store, hash.meta.ID); err != nil {
 		return err
 	}
-	// 从过期集合里删除
 	return RemoveExpire(hash.environ, hash.store, hash.key, hash.meta.ExpireAt)
 }

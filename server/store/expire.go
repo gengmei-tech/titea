@@ -50,11 +50,11 @@ func runExpire(environ *Environ, store *Store) {
 
 		value := iter.Value()
 		rawKey, expireAt := decodeExpireKey(environ.Header, key)
-		// 查看是否过期(延迟12小时过期, 目的减少异步主动过期与写操作的事务冲突)
+		// expire delay 12h, for decrease txn conflict
 		if expireAt > uint64((time.Now().Unix()-43200)*1000) {
 			break
 		}
-		// 需要判断下元信息
+		// check meta
 		mkey := EncodeMetaKey(environ.Header, rawKey)
 		mvalue, err := store.Get(mkey)
 		if err != nil {

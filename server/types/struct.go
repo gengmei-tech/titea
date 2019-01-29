@@ -2,22 +2,22 @@ package types
 
 // Namespace avoid package cycle include
 type Namespace struct {
-	// 名称 group.service
+	// Name group.service
 	Name string `json:"name"`
 
 	Type uint8 `json:"type"`
-	// 命名空间所在的组
+	// Group
 	Group string `json:"group"`
 
-	// 名空间所在的service
+	// Service
 	Service string `json:"service"`
 
-	// 创建人
+	// Creator
 	Creator string `json:"creator"`
 
-	// 创建时间
+	// CreateAt
 	CreateAt int64 `json:"createAt"`
 
-	// 对应数据库的索引
+	// DBIndex
 	Index uint64 `json:"index"`
 }

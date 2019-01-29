@@ -18,16 +18,16 @@ const (
 type List struct {
 	store *Store
 
-	// 上下文环境
+	// Environ context
 	environ *Environ
 
 	// hash key
 	key []byte
 
-	// metaKey 不需要再次encode
+	// metaKey
 	metaKey []byte
 
-	// 元信息
+	// meta
 	meta *Meta
 
 	// index
@@ -84,7 +84,7 @@ func (list *List) ExistsForRead() error {
 	}
 	if list.meta.CheckIfExpire() {
 		list.store.WriteReset()
-		// 删除meta
+		// delete meta
 		if err := list.store.Delete(list.metaKey); err != nil {
 			return err
 		}

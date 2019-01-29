@@ -10,7 +10,7 @@ import (
 )
 
 // user defined command
-// register group.service dbindex creator 注册一个命名空间到redis dbindex的映射
+// register group.service dbindex creator, registre map from redis dbindex to namespace
 func registerCommand(c *Client) error {
 	dbindex, err := strconv.ParseUint(string(c.args[1]), 10, 64)
 	if err != nil {
@@ -25,8 +25,7 @@ func registerCommand(c *Client) error {
 	return c.writer.String("OK")
 }
 
-// 清除某一个前缀开始的
-// 清除数据的时候使用 其余的时候不用
+// flush with prefix
 func flushCommand(c *Client) error {
 	if bytes.HasPrefix(c.args[0], []byte(types.SystemPrefix)) {
 		svr := store.InitServer(c.store)

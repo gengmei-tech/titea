@@ -281,7 +281,7 @@ func (zset *ZSet) Remove(members ...[]byte) (uint64, error) {
 	var delCnt uint64
 	for key, value := range keyValues {
 		if val, ok := result[key]; ok {
-			// 存在
+			// exists
 			score, err := strconv.ParseFloat(string(val), 64)
 			if err != nil {
 				return 0, err

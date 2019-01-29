@@ -12,7 +12,7 @@ import (
 
 // namespace in tikv is store in key => value format
 
-// 命名空间类型
+// Namespace type
 const (
 	// TYPE_SYSTEM system namespace
 	TYPESYSTEM uint8 = 1

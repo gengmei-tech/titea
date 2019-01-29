@@ -1,9 +1,5 @@
 package server
 
-// 对于zset meta里的Count为准确的元素数量, 添加元素的时候,必须先get下这个元素是否存在, 然后才能set
-// 对于zset的每对元素, tikv底层对应2个key
-// zadd执行时, 如果key存在且过期了,但被动过期还没有执行,则只能同步清除该key下挂载的数据
-
 import (
 	"github.com/gengmei-tech/titea/server/store"
 	"github.com/gengmei-tech/titea/server/terror"
@@ -140,7 +136,6 @@ func zscoreCommand(c *Client) error {
 	return c.writer.BulkByte(score)
 }
 
-// 删除某个元素
 func zremCommand(c *Client) error {
 	zset, err := store.InitZSet(c.environ, c.store, c.args[0])
 	if err != nil {
@@ -200,7 +195,7 @@ func zincrbyCommand(c *Client) error {
 	return c.writer.BulkByte(value)
 }
 
-// 返回 start count ok
+// return start count ok
 func transferStartEnd(total, start, end int64, reverse bool) (int64, int64, bool) {
 	if start < 0 {
 		start += total
@@ -231,7 +226,7 @@ func transferStartEnd(total, start, end int64, reverse bool) (int64, int64, bool
 	return start, end - start, true
 }
 
-// 获取 withscores字段
+// get withscores fields
 func transferWithscores(c *Client) (bool, error) {
 	if c.argc == 4 {
 		if strings.ToLower(string(c.args[3])) == "withscores" {
@@ -248,7 +243,7 @@ func transferWithscores(c *Client) (bool, error) {
 	return false, nil
 }
 
-//// 解析 limit off 参数
+//// parse limit off
 //func transferOffsetLimit(c *Client, total uint64) (uint64, uint64, bool, error) {
 //	var (
 //		index	uint8
@@ -296,8 +291,7 @@ func transferWithscores(c *Client) (bool, error) {
 //	return offset, limit, true, nil
 //}
 
-// score -inf +inf (5(不包括5)
-// 返回 将score转化成对应的key
+// score -inf +inf
 //func transferScore(client *Client, value []byte) ([]byte, bool, error) {
 //	var (
 //		key		 		[]byte

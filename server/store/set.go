@@ -68,7 +68,7 @@ func (set *Set) ExistsForRead() error {
 	}
 	if set.meta.CheckIfExpire() {
 		set.store.WriteReset()
-		// 删除meta
+		// delete meta
 		if err := set.store.Delete(set.metaKey); err != nil {
 			return err
 		}
@@ -126,7 +126,7 @@ func (set *Set) Add(members ...[]byte) (uint64, error) {
 	var addCnt uint64
 	for key, value := range keyValues {
 		if _, ok := result[key]; ok {
-			// 已经存在的
+			// exists
 			continue
 		}
 		if err = set.store.Set([]byte(key), value); err != nil {

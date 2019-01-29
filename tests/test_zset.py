@@ -149,11 +149,9 @@ class ZsetTest(unittest.TestCase):
         self.assertEqual(self.r.zcard(self.k1), 0)
         self.assertEqual(self.r.zcard(self.k2), 0)
 
-        # 判断exists
         self.assertFalse(self.r.exists(self.k1), "delCommand zset exists error1")
         self.assertFalse(self.r.exists(self.k2), "delCommand zset exists error2")
 
-        # 判断类型type
         self.assertIsNone(self.r.type(self.k1), "delCommand zset type error1")
         self.assertIsNone(self.r.type(self.k2), "delCommand zset type error2")
 

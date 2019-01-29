@@ -1,9 +1,5 @@
 package server
 
-// scard操作, 通过count prefix 方式获取集合元素数量
-// 对于sunionstore sdiffstore sinterstore这3种操作, save to 的集合需要不存在, 如果存在则失败
-// 对应srem操作, 当集合里的元素删除后, 需要异步检测下 集合里还是否有元素如果没有则删除元信息(暂时先不支持srem)
-
 import (
 	"github.com/deckarep/golang-set"
 	"github.com/gengmei-tech/titea/server/store"

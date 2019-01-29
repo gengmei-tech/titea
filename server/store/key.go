@@ -14,10 +14,10 @@ type KEY struct {
 	// key
 	key []byte
 
-	// metaKey 不需要再次encode
+	// metaKey
 	metaKey []byte
 
-	// value保存在meta的extra字段
+	// value saved in meta extra
 	meta *Meta
 }
 

@@ -32,14 +32,12 @@ class StringTest(unittest.TestCase):
         self.assertTrue(self.r.set(self.k1, self.v1))
         v1 = self.r.get(self.k1)
         self.assertEqual(self.v1, v1, '{} != {}'.format(v1, self.v1))
-        # 判断exists
         self.assertTrue(self.r.exists(self.k1), "string exists {} error".format(self.k1))
 
     def test_set(self):
         self.assertTrue(self.r.set(self.k1, self.v1))
         v1 = self.r.get(self.k1)
         self.assertEqual(self.v1, v1, '{} != {}'.format(v1, self.v1))
-        #判断类型type
         self.assertEqual(self.r.type(self.k1), "string", 'string type {} != strings'.format(self.k1))
     
     def test_del(self):
@@ -53,11 +51,9 @@ class StringTest(unittest.TestCase):
         self.assertIsNone(self.r.get(self.k1), 'delCommand not delete1')
         self.assertIsNone(self.r.get(self.k2), 'delCommand not delete2')
 
-        # 判断exists
         self.assertFalse(self.r.exists(self.k1), "delCommand exists error1")
         self.assertFalse(self.r.exists(self.k2), "delCommand exists error2")
 
-        # 判断类型type
         self.assertIsNone(self.r.type(self.k1), "delCommand type error1")
         self.assertIsNone(self.r.type(self.k2), "delCommand type error2")
 
@@ -69,7 +65,6 @@ class StringTest(unittest.TestCase):
         self.assertTrue(self.r.mset({self.k1:self.v1, self.k2:self.v2}))
         self.assertListEqual(self.r.mget(self.k1, self.k2), [self.v1, self.v2])
 
-        # 判断exists
         self.assertTrue(self.r.exists(self.k1), "msetCommand exists error1")
         self.assertTrue(self.r.exists(self.k2), "msetCommand exists error2")
 
@@ -122,11 +117,9 @@ class StringTest(unittest.TestCase):
         self.assertTrue(self.r.setnx(self.k2, self.v2))
         self.assertEqual(self.r.get(self.k2), self.v2)
 
-        # exists type 命令是否失效
         self.assertTrue(self.r.exists(self.k2), "setnxCommand exists error")
         self.assertEqual(self.r.type(self.k2), "string", "setnxCommand type error1")
 
-        # exists type 命令是否失效
         self.assertTrue(self.r.exists(self.k1), "setnxCommand exists error")
         self.assertEqual(self.r.type(self.k1), "string", "setnxCommand type error1")
 
@@ -138,7 +131,6 @@ class StringTest(unittest.TestCase):
         self.assertEqual(self.r.getset(self.k1, self.v2), self.v1)
         self.assertEqual(self.r.get(self.k1), self.v2)
 
-        # exists type 命令是否失效
         self.assertTrue(self.r.exists(self.k1), "getsetCommand exists error")
         self.assertEqual(self.r.type(self.k1), "string", "getsetCommand type error1")
 
@@ -152,7 +144,6 @@ class StringTest(unittest.TestCase):
         time.sleep(6)
         self.assertIsNone(self.r.get(self.k1))
 
-        #exists type 命令是否失效
         self.assertFalse(self.r.exists(self.k1), "pexpireCommand exists error")
         self.assertIsNone(self.r.type(self.k1), "pexpireCommand type error1")
 
@@ -167,7 +158,6 @@ class StringTest(unittest.TestCase):
         time.sleep(6)
         self.assertIsNone(self.r.get(self.k1))
 
-        # exists type 命令是否失效
         self.assertFalse(self.r.exists(self.k1), "pexpireatCommand exists error")
         self.assertIsNone(self.r.type(self.k1), "pexpireatCommand type error1")
 
@@ -180,7 +170,6 @@ class StringTest(unittest.TestCase):
         time.sleep(6)
         self.assertIsNone(self.r.get(self.k1))
 
-        # exists type 命令是否失效
         self.assertFalse(self.r.exists(self.k1), "expireCommand exists error")
         self.assertIsNone(self.r.type(self.k1), "expireCommand type error1")
 
@@ -196,7 +185,6 @@ class StringTest(unittest.TestCase):
         time.sleep(6)
         self.assertIsNone(self.r.get(self.k1))
 
-        # exists type 命令是否失效
         self.assertFalse(self.r.exists(self.k1), "expireatCommand exists error")
         self.assertIsNone(self.r.type(self.k1), "expireatCommand type error1")
 

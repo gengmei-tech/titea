@@ -7,7 +7,6 @@ import (
 	"time"
 )
 
-// 获取meta 根据meta的类型调用不同的删除函数 del key1 key2 key3 同一类型的key一起删除 返回成功删除的个数
 func delCommand(c *Client) error {
 	pk := store.InitKey(c.environ, c.store)
 	delCnt, err := pk.Del(c.args[0:]...)
@@ -17,7 +16,6 @@ func delCommand(c *Client) error {
 	return c.writer.Integer(int64(delCnt))
 }
 
-// exists key1 key2 返回exists的数量
 func existsCommand(c *Client) error {
 	pk := store.InitKey(c.environ, c.store)
 	count, err := pk.Exists(c.args[0:]...)
@@ -36,7 +34,6 @@ func typeCommand(c *Client) error {
 	return c.writer.Byte(t)
 }
 
-// 返回0 || 1
 func expireCommand(c *Client) error {
 	second, err := strconv.ParseInt(string(c.args[1]), 10, 64)
 	if err != nil {
@@ -92,7 +89,7 @@ func pttlCommand(c *Client) error {
 	return c.writer.Integer(pttl)
 }
 
-// expireTime 为毫秒过期时间
+// expireTime millisecond
 func expireGenericCommand(c *Client, expireTime int64) error {
 	pk := store.InitKey(c.environ, c.store)
 	status, err := pk.Expire(c.args[0], expireTime)
@@ -105,7 +102,7 @@ func expireGenericCommand(c *Client, expireTime int64) error {
 //keys * start limit
 //keys prefix start limit
 //keys prefix*
-//tip: 最大返回5000个元素 start 不支持负数
+//tip: max 5000
 func keysCommand(c *Client) error {
 	var start int64
 	var limit int64

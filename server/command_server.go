@@ -7,21 +7,19 @@ import (
 	"strings"
 )
 
-// 对应redis的server类命令
-
-// flush current db data 命名空间不删除
+// flush current db data, namespace don't delete
 func flushdbCommand(c *Client) error {
 	svr := store.InitServer(c.store)
 	svr.FlushDB(c.environ)
 	return c.writer.String("OK")
 }
 
-// 正式使用前的数据清理 命名空间不删除
+// @todo
 func flushallCommand(c *Client) error {
 	return c.writer.String("OK")
 }
 
-// 以client开头发命令 暂时 client list
+// only client list
 func clientCommand(c *Client) error {
 	sub := strings.ToLower(string(c.args[0]))
 	if sub == "list" {
@@ -42,7 +40,6 @@ func clientListCommand(c *Client) error {
 	return c.writer.Array(resp)
 }
 
-// 返回系统信息 目前返回命名空间
 // #service
 // group.service: creater
 func infoCommad(c *Client) error {
@@ -66,7 +63,7 @@ func infoCommad(c *Client) error {
 	return c.writer.Array(resp)
 }
 
-// 只返回当前命名空间下数据数量
+// dbsize within current namespace
 func dbsizeCommad(c *Client) error {
 	svr := store.InitServer(c.store)
 	total, err := svr.DBSize(c.environ)

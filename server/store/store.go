@@ -11,16 +11,16 @@ import (
 
 // Store implement communicate with TiKv
 type Store struct {
-	// 读写
+	// DB
 	DB kv.Storage
 
-	// 快照 用来read
+	// Snapshot for read
 	Snapshot kv.Snapshot
 
-	// 事物 用来读写操作
+	// Txn for write
 	Txn kv.Transaction
 
-	// 是否只读
+	// Only read or not
 	OnlyRead bool
 }
 

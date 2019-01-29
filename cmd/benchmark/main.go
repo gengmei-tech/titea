@@ -1,5 +1,7 @@
 package main
 
+// not ready for use
+
 import (
 	"flag"
 	"fmt"
@@ -18,10 +20,8 @@ var (
 	tests      = flag.String("t", "set,get", "only run the comma separated list of tests")
 )
 
-// 每个客户端端用到的redis client
 var clients []*redis.Client
 
-// 如果只是单独测试get, 则在测试get前需要先调用set
 var setAlready = false
 
 func newClient() *redis.Client {
@@ -41,12 +41,6 @@ func initClient() {
 		clients = append(clients, newClient())
 	}
 }
-
-// 当执行set操作前 需要clear下之前存在的
-func clear() {
-	clients[0].FlushDB()
-}
-
 func main() {
 	flag.Parse()
 
@@ -69,7 +63,6 @@ func main() {
 		}
 	}
 
-	// 持续读
 	if *loop {
 		for {
 			get()
@@ -78,10 +71,7 @@ func main() {
 	}
 }
 
-// 测试set
 func set() {
-
-	//clear()
 
 	fmt.Println("[test set begin]")
 
@@ -102,7 +92,6 @@ func set() {
 	}
 	wg.Wait()
 
-	// 纳秒
 	totalTime := time.Since(start).Nanoseconds()
 
 	totalReq := int64((*requestCnt) * (*clientCnt))
@@ -119,7 +108,6 @@ func set() {
 
 }
 
-// 测试get
 func get() {
 
 	if !setAlready {
@@ -144,7 +132,6 @@ func get() {
 	}
 	wg.Wait()
 
-	// 纳秒
 	totalTime := time.Since(start).Nanoseconds()
 
 	totalReq := int64((*requestCnt) * (*clientCnt))

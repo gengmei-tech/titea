@@ -1,10 +1,3 @@
-//
-// main.go
-// Copyright (C) 2018 YanMing <yming0221@gmail.com>
-//
-// Distributed under terms of the MIT license.
-//
-
 package main
 
 import (
@@ -59,7 +52,6 @@ func loadConfig() {
 		cfg.Host = *host
 	}
 
-	// 如果参数指定port则使用指定的port
 	if *port != 0 {
 		cfg.Port = *port
 	}
