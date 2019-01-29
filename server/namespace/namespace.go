@@ -79,7 +79,6 @@ func LoadNamespace(db *store.Store) {
 		panic("LoadNamespace Error")
 	}
 	if value != nil {
-		// 有
 		if err := json.Unmarshal(value, &namespaces); err != nil {
 			panic("json.Unmarshal AllNamespace Error")
 		}
@@ -150,7 +149,7 @@ func initNamespace(db *store.Store) {
 		dbs[namespace.Index] = &namespace
 	}
 
-	// 初始化系统命名空间
+	// Init system namespace
 	if _, err := registerNamespace(db, systemNamespace, systemCreator, 0, TYPESYSTEM); err != nil {
 		panic("Init Namespace Error")
 	}

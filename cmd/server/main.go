@@ -71,7 +71,7 @@ func loadConfig() {
 	if *logpath != "" {
 		cfg.Log.LogPath = *logpath
 	}
-	// 是否运行异步过期及gc 多台实例时仅有一台可以运行expire and gc
+	// run gc, only one instance run
 	cfg.RunExpGc = *runExpGc
 }
 

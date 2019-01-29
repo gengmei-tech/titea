@@ -30,7 +30,7 @@ type Client struct {
 	args [][]byte
 	argc int
 
-	// connection authentation isAuthed 是否验证 needAuth 是否需要验证
+	// connection authentation
 	needAuth bool
 	isAuthed bool
 
@@ -78,7 +78,6 @@ func (c *Client) run() {
 
 	for {
 		if req, err = c.reader.ParseRequest(); err != nil {
-			// 结束
 			if err == io.EOF {
 				break
 			}
@@ -165,6 +164,5 @@ func (c *Client) execute() error {
 		}
 	}()
 
-	// 执行命令
 	return command.Function(c)
 }

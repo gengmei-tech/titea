@@ -102,11 +102,9 @@ class ListTest(unittest.TestCase):
         self.assertEqual(self.r.delete(self.k1, self.k2), 2)
 
 
-        # 判断exists
         self.assertFalse(self.r.exists(self.k1), "delCommand list exists error1")
         self.assertFalse(self.r.exists(self.k2), "delCommand list exists error2")
 
-        # 判断类型type
         self.assertIsNone(self.r.type(self.k1), "delCommand list type error1")
         self.assertIsNone(self.r.type(self.k2), "delCommand list type error2")
 

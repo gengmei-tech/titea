@@ -86,7 +86,6 @@ func (zset *ZSet) ExistsForRead() error {
 	}
 	if zset.meta.CheckIfExpire() {
 		zset.store.WriteReset()
-		// 删除meta
 		if err := zset.store.Delete(zset.metaKey); err != nil {
 			return err
 		}
@@ -181,7 +180,6 @@ func (zset *ZSet) Add(members ...ZMember) (uint64, error) {
 		scoreKey := zset.EncodeScoreKey(member.Field, member.Score)
 		if val, ok := result[key]; ok {
 			if bytes.Compare(val, member.Value) != 0 {
-				// score 变化了 删除之前的score
 				oldScore, err := strconv.ParseFloat(string(val), 64)
 				if err != nil {
 					return 0, err

@@ -87,7 +87,7 @@ var commandTable = map[string]command{
 	"echo":   {"echo", echoCommand, 1, types.FlagPlain, 0, 0, types.CCONN},
 	"auth":   {"auth", authCommand, 1, types.FlagPlain, 0, 0, types.CCONN},
 	"quit":   {"quit", quitCommand, 0, types.FlagPlain, 0, 0, types.CCONN},
-	// redis-cli 连接后发送的验证命令
+	// redis-cli connected will send command
 	"command": {"command", pingCommand, 0, types.FlagPlain, 0, 0, types.CCONN},
 
 	// command server

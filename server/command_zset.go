@@ -233,7 +233,6 @@ func transferWithscores(c *Client) (bool, error) {
 			return true, nil
 		}
 	} else if c.argc == 7 {
-		// 7个参数 有可能3 也有可能6
 		if strings.ToLower(string(c.args[3])) == "withscores" {
 			return true, nil
 		} else if strings.ToLower(string(c.args[6])) == "withscores" {

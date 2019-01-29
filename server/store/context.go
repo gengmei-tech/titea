@@ -38,7 +38,7 @@ type Environ struct {
 	// prefix|namespace
 	Header []byte
 
-	// 头长度
+	// header len
 	HeaderLen int
 
 	// 操作命令数量
