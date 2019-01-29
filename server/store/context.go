@@ -41,7 +41,7 @@ type Environ struct {
 	// header len
 	HeaderLen int
 
-	// 操作命令数量
+	// Operation count
 	OpCount uint64
 }
 
